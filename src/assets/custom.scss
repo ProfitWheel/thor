@@ -1,0 +1,276 @@
+body {
+    font-size: 12px;
+}
+
+.navbar.pw-navbar {
+    background-color: #fff !important;
+    box-shadow: 0 1px 15px 2px rgba(123, 123, 123, 0.05);
+    position: fixed;
+    width: 100%;
+    padding: 4px 8px;
+
+    .minimize-sidebar.btn {
+        margin: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .sidebar-mini .sidebar {
+        width: 60px;
+    }
+    .sidebar-mini .main-panel > .content {
+        padding-left: 110px;
+    }
+}
+
+.white-content .navbar.pw-navbar .navbar-toggler-bar {
+    background: #666;
+}
+
+.white-content .navbar.pw-navbar .navbar-nav li a:not(.dropdown-item) {
+    i {
+        color: #666;
+    }
+    &:hover {
+        i {
+            color: #066ccf;
+        }
+    }
+}
+
+.nav-link:hover {
+    color: #066ccf;
+}
+
+.navbar-nav li.nav-item {
+    padding: 0;
+    margin-left: 10px;
+}
+
+button:focus {
+    outline: 0;
+    border:0;
+}
+
+.sidebar:before,
+.off-canvas-sidebar:before {
+    left: 25px;
+}
+
+.sidebar,
+.off-canvas-sidebar {
+    margin-top: 70px;
+}
+
+.main-panel > .content {
+    padding: 70px 30px 30px 280px;
+    min-height: calc(100vh - 60px);
+}
+
+.main-panel {
+    border-top: 0;
+}
+
+// .login-page .card-login.card-white .input-group-prepend .input-group-text {
+//     padding: 10px 18px;
+// }
+
+.login-page .card-login .input-group:last-child {
+    margin-bottom: 10px;
+}
+
+.white-content .navbar .navbar-minimize button i {
+    color: #1d253b;
+}
+
+.white-content .navbar .navbar-nav li a:not(.dropdown-item) i {
+    color: #1d253b;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    //  -webkit-text-fill-color: #333 !important;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0071bc;
+    border-radius: 10px;
+}
+
+.footer {
+    padding: 22px 30px;
+}
+
+.navbar .navbar-brand {
+    margin-left: 0;
+}
+
+.sidebar .sidebar-wrapper > .nav [data-toggle="collapse"] ~ div > ul > li > a i,
+.sidebar .sidebar-wrapper .user .info [data-toggle="collapse"] ~ div > ul > li > a i,
+.off-canvas-sidebar .sidebar-wrapper > .nav [data-toggle="collapse"] ~ div > ul > li > a i,
+.off-canvas-sidebar .sidebar-wrapper .user .info [data-toggle="collapse"] ~ div > ul > li > a i {
+    width: 36px;
+}
+
+.sidebar .nav li.active > a[data-toggle="collapse"]:before,
+.off-canvas-sidebar .nav li.active > a[data-toggle="collapse"]:before {
+    background: #fff;
+}
+
+.sidebar .nav li.active > a > i,
+.sidebar .nav li.active > a > p,
+.off-canvas-sidebar .nav li.active > a > i,
+.off-canvas-sidebar .nav li.active > a > p {
+    color: #fff;
+}
+
+.sidebar .nav li > a,
+.off-canvas-sidebar .nav li > a {
+    margin: 0px 15px;
+}
+
+.sidebar .nav .caret2,
+.off-canvas-sidebar .nav .caret2 {
+    top: 17px;
+}
+
+a {
+    color: rgba(6, 107, 207, 0.781);
+}
+
+a:hover,
+a:focus {
+    color: #066ccf;
+}
+
+a.loginfooteranchor {
+    color: #1d54a7;
+}
+
+.login-page .card-login.card-white .input-group-prepend .input-group-text {
+    background-color: #fff;
+}
+
+.loginscreenlogo {
+    padding: 40px 20px 10px;
+    text-align: center;
+    img {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
+
+.card .card-body {
+    padding: 15px 15px 0;
+}
+
+.full-page.login-page {
+    background: #448ef6;
+    background: -moz-linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, #29bae4), color-stop(100%, #ee76ad));
+    background: -webkit-linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
+    background: -o-linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
+    background: -ms-linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
+    background: linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#448ef6', endColorstr='#af05a9', GradientType=1 );
+}
+
+.login-page {
+    .card-footer {
+        padding: 10px 25px 10px 25px;
+    }
+}
+
+.sidebar .nav li > a,
+.off-canvas-sidebar .nav li > a {
+    text-transform: capitalize;
+    font-size: 12px;
+    padding: 2px 8px;
+    margin: 0 10px;
+}
+
+.sidebar-mini .sidebar-wrapper {
+    overflow: hidden;
+}
+
+.login-page .card-login.card-white {
+    background: #f1f1f1;
+}
+
+.login-page .card-login.card-white .form-control {
+    background: #fff;
+}
+
+.sidebar .nav .caret,
+.off-canvas-sidebar .nav .caret {
+    right: -5px;
+}
+
+.sidebar .nav i,
+.off-canvas-sidebar .nav i {
+    font-size: 16px;
+    width: 24px;
+    margin-right: 8px;
+}
+
+.sidebar .nav li.active > a:not([data-toggle="collapse"]):before,
+.off-canvas-sidebar .nav li.active > a:not([data-toggle="collapse"]):before,
+.sidebar .nav li.active > a[data-toggle="collapse"]:before,
+.off-canvas-sidebar .nav li.active > a[data-toggle="collapse"]:before {
+    top: 14px;
+    left: 0px;
+}
+
+.sidebar .nav li.active > a[data-toggle="collapse"] + div .nav .active a:before,
+.off-canvas-sidebar .nav li.active > a[data-toggle="collapse"] + div .nav .active a:before {
+    top: 10px;
+    left: 44px;
+}
+
+.sidebar .nav li > a + div .nav li > a,
+.off-canvas-sidebar .nav li > a + div .nav li > a {
+    padding: 2px 8px;
+    padding-left: 55px;
+    &:hover {
+        color: #fff;
+    }
+}
+
+.sidebar .nav li > a + div .nav,
+.off-canvas-sidebar .nav li > a + div .nav {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.sidebar .nav li:first-child > a,
+.off-canvas-sidebar .nav li:first-child > a {
+    margin: 0 10px;
+}
+
+.sidebar .nav li:hover {
+    a {
+        color: #fff !important;
+        > p {
+            color: #fff !important;
+        }
+        > .sidebar-normal {
+            color: #fff !important;
+        }
+    }
+}
+
+.white-content .card {
+    margin-bottom: 15px;
+}
