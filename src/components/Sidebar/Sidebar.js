@@ -30,11 +30,16 @@ export default function Sidebar(props) {
   const [menuState, setMenuState] = React.useState({});
 
   useEffect(() => {
-    console.log(pathName);
-  }, []);
+    setMenuState({});
+    console.log(props.sidebarOpened);
+  }, [props.sidebarOpened]);
 
   return (
-    <div className="sidebar" data="blue">
+    <div className="sidebar" data="blue" onMouseLeave={()=>{
+      if(document.getElementsByTagName("body")[0].classList.contains("sidebar-mini")) {
+      setMenuState({});
+      }
+    }}>
       <div className="sidebar-wrapper">
 
         <ul className="nav">

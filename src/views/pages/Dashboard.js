@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import PwLoader from './../../components/PwLoader';
 
 // reactstrap components
 import {
@@ -26,12 +27,14 @@ import {
 import Layout from "./../../Layout";
 
 export default function Dashboard(props) {
+  const [loading, setLoading] = useState(false);
   return (
     <Layout>
       <div className="content">
             <Card style={{padding: "15px"}}>
               Dashboard
             </Card>
+            <PwLoader loading={loading}/>
       </div>
     </Layout>
   );

@@ -14,6 +14,7 @@ export default function Layout(props) {
   const toggleSidebar = () => {
     setSidebarOpened(!sidebarOpened);
     document.documentElement.classList.toggle("nav-open");
+    document.body.classList.toggle("sidebar-mini");
   };
 
   return (
@@ -24,7 +25,7 @@ export default function Layout(props) {
           sidebarOpened={sidebarOpened}
           toggleSidebar={toggleSidebar}
         />
-      <Sidebar/>
+      <Sidebar sidebarOpened={sidebarOpened}/>
       <div className="main-panel">
         
         {props.children}
