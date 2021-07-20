@@ -54,7 +54,7 @@ const AdminNavbar = (props) => {
                 className="minimize-sidebar btn-just-icon"
                 color="link"
                 id="tooltip209599"
-                onClick={props.toggleSidebar}
+                onClick={props.handleMiniClick}
               >
                 <i className="tim-icons icon-align-left-2 visible-on-sidebar-regular" />
                 <i className="tim-icons icon-bullet-list-67 visible-on-sidebar-mini" />
@@ -69,7 +69,7 @@ const AdminNavbar = (props) => {
             </div>
             <div
               className={classNames("navbar-toggle d-inline", {
-                toggled: props.sidebarOpened,
+                toggled: props.sidebarOpenedSmall,
               })}
             >
               <button

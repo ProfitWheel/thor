@@ -31,7 +31,7 @@ export default function Sidebar(props) {
 
   useEffect(() => {
     setMenuState({});
-    console.log(props.sidebarOpened);
+    // console.log(props.sidebarOpened);
   }, [props.sidebarOpened]);
 
   return (

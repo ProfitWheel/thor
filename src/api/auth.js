@@ -1,15 +1,25 @@
-import Axios from "../Axios";
+import axios from 'axios';
 
-export const otp = async (payload,headers) => {
-    const response = await Axios.post(`otp`, payload, {
-        headers:headers
-    });
-    return response.data;
-};
+let url = "https://dev.profitwheel.com/api";
 
-export const login = async (payload,headers) => {
-    const response = await Axios.post(`login`, payload, {
-        headers:headers
-    });
-    return response.data;
-};
+//Set Authorization Token
+export function setAuthorizationToken(token) {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
+    }
+  }
+  
+  //Authentication
+  export function authenticate(UserData) {
+    return axios.post(`${url}/auth/login/`, UserData) //login api
+  }
+  
+  export function resetOtp(userData) {
+    return axios.post(`${url}/auth/otp/`, userData); //reset otp api
+  }
+  
+  export function register(userData) {
+    return axios.post(`${url}/auth/register/`, userData); //register api
+  }

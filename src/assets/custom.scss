@@ -8,7 +8,7 @@ body {
     background-color: #fff !important;
     box-shadow: 0 1px 15px 2px rgba(123, 123, 123, 0.05);
     position: fixed;
-    width: 100%;
+    width: 100vw;
     padding: 4px 8px;
 
     .minimize-sidebar.btn {
@@ -21,8 +21,15 @@ body {
         width: 60px;
     }
     .sidebar-mini .main-panel > .content {
-        padding-left: 110px;
+        padding-left: 100px;
     }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px)
+{
+.main-panel .content {
+    padding-left: 20px !important;
+}
 }
 
 .white-content .navbar.pw-navbar .navbar-toggler-bar {
@@ -65,8 +72,8 @@ button:focus {
 }
 
 .main-panel > .content {
-    padding: 70px 30px 30px 280px;
-    min-height: calc(100vh - 60px);
+    padding: 70px 20px 30px 270px;
+    min-height: calc(100vh - 53px);
 }
 
 .main-panel {
@@ -82,11 +89,11 @@ button:focus {
 }
 
 .white-content .navbar .navbar-minimize button i {
-    color: #1d253b;
+    color: #666;
 }
 
 .white-content .navbar .navbar-nav li a:not(.dropdown-item) i {
-    color: #1d253b;
+    color: #666;
 }
 
 input:-webkit-autofill,
@@ -112,7 +119,7 @@ input:-webkit-autofill:active {
 }
 
 .footer {
-    padding: 22px 30px;
+    padding: 22px 30px 5px;
 }
 
 .navbar .navbar-brand {
@@ -150,6 +157,7 @@ input:-webkit-autofill:active {
 
 a {
     color: rgba(6, 107, 207, 0.781);
+    cursor: pointer;
 }
 
 a:hover,
@@ -169,7 +177,7 @@ a.loginfooteranchor {
     padding: 40px 20px 10px;
     text-align: center;
     img {
-        width: 80%;
+        width: 150px;
         margin: 0 auto;
     }
 }
@@ -191,7 +199,7 @@ a.loginfooteranchor {
 
 .login-page {
     .card-footer {
-        padding: 10px 25px 10px 25px;
+        padding: 0px 25px 10px 25px;
     }
 }
 
@@ -309,25 +317,25 @@ a.loginfooteranchor {
   .pw-loader {
     .arc {
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      border-bottom: 3px solid #0071bc;
+      border-bottom: 4px solid #0071bc;
 
       &.arc1 {
-        border-bottom: 3px solid $pwblue;
+        border-bottom: 4px solid $pwblue;
       }
 
       &.arc2 {
-        border-bottom: 3px solid $pwyellow;
+        border-bottom: 4px solid $pwyellow;
     }
 
     &.arc3 {
-        border-bottom: 3px solid $pwgreen;
+        border-bottom: 4px solid $pwgreen;
     }
 
     &.arc4 {
-        border-bottom: 3px solid $pwred;
+        border-bottom: 4px solid $pwred;
     }
 
   
@@ -387,11 +395,19 @@ a.loginfooteranchor {
   
   @keyframes rotate4 {
     from {
-      transform: rotateX(40deg) rotateY(0deg) rotateZ(0);
+      transform: rotateX(70deg) rotateY(-10deg) rotateZ(0);
     }
   
     to {
-      transform: rotateX(40deg) rotateY(0deg) rotateZ(1turn);
+      transform: rotateX(70deg) rotateY(-10deg) rotateZ(1turn);
     }
   }
+
+
+.login-page {
+.input-group, .form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+}
   
