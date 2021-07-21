@@ -11,7 +11,7 @@
 .tag,
 .tag [data-role="remove"],
 .animation-transition-general{
-    @include transitions($general-transition-time, $transition-ease);
+    transition: none;
 }
 
 //transition for dropdown caret

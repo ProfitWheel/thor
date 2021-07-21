@@ -55,7 +55,7 @@ export default function Sidebar(props) {
             >
               <div className="siderbarelement">
                 <i className="tim-icons icon-molecule-40" />
-                <p>Dashboard</p>
+                <p><span className="twolinestext">Dashboard</span></p>
               </div>
             </NavLink>
           </li>
@@ -85,7 +85,7 @@ export default function Sidebar(props) {
               <div className="siderbarelement">
                 <i className="tim-icons icon-settings-gear-63" />
                 <p>
-                  Control room
+                <span className="twolinestext">Control room</span>
                   <b className="caret caret2" />
                 </p>
               </div>
@@ -112,7 +112,7 @@ export default function Sidebar(props) {
                   >
                     <div className="siderbarelement">
                       <span className="sidebar-normal">
-                        Access Manager
+                      <span className="twolinestext">Access Manager</span>
                         <b className="caret" />
                       </span>
                     </div>
@@ -129,7 +129,7 @@ export default function Sidebar(props) {
                         >
                           <div className="siderbarelement">
                             <span className="sidebar-normal">
-                              User Manager
+                            <span className="twolinestext">User Manager</span>
                             </span>
                           </div>
                         </NavLink>
@@ -144,7 +144,7 @@ export default function Sidebar(props) {
                         >
                           <div className="siderbarelement">
                             <span className="sidebar-normal">
-                              Company Manager
+                            <span className="twolinestext">Company Manager</span>
                             </span>
                           </div>
                         </NavLink>
@@ -174,7 +174,7 @@ export default function Sidebar(props) {
                   >
                     <div className="siderbarelement">
                       <span className="sidebar-normal">
-                        Group Manager
+                      <span className="twolinestext">Group Manager</span>
                         <b className="caret" />
                       </span>
                     </div>
@@ -191,7 +191,7 @@ export default function Sidebar(props) {
                         >
                           <div className="siderbarelement">
                             <span className="sidebar-normal">
-                              Campaign Group
+                            <span className="twolinestext">Campaign Group</span>
                             </span>
                           </div>
                         </NavLink>
@@ -206,7 +206,7 @@ export default function Sidebar(props) {
                         >
                           <div className="siderbarelement">
                             <span className="sidebar-normal">
-                              Product Group
+                            <span className="twolinestext">Product Group</span>
                             </span>
                           </div>
                         </NavLink>
@@ -227,7 +227,7 @@ export default function Sidebar(props) {
                   >
                     <div className="siderbarelement">
                       <span className="sidebar-normal">
-                        Client Manager
+                      <span className="twolinestext">Client Manager</span>
                       </span>
                     </div>
                   </NavLink>
@@ -252,7 +252,7 @@ export default function Sidebar(props) {
             >
               <>
                 <i className="tim-icons icon-notes" />
-                <p>Reports</p>
+                <p><span className="twolinestext">Reports</span></p>
               </>
             </NavLink>
           </li>
@@ -269,7 +269,7 @@ export default function Sidebar(props) {
             >
               <>
                 <i className="tim-icons icon-settings" />
-                <p>Settings</p>
+                <p><span className="twolinestext">Settings</span></p>
               </>
             </NavLink>
           </li>

@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import { Link, useHistory } from "react-router-dom";
@@ -41,6 +41,16 @@ import {
 const AdminNavbar = (props) => {
   const history = useHistory();
   const [collapseOpen, setCollapseOpen] = React.useState(false);
+
+  const [signOut, setSignOut] = useState(false);
+
+  useEffect(() => {
+    if (signOut) {
+      localStorage.removeItem("access_token");
+      window.location.href = '/';
+    }
+  }, [signOut]);
+
   return (
     <>
       <Navbar
@@ -145,7 +155,7 @@ const AdminNavbar = (props) => {
                   </li>
                   <DropdownItem divider tag="li" /> */}
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">Log out</DropdownItem>
+                    <DropdownItem className="nav-item" onClick={(e) => { e.preventDefault();setSignOut(true); }}>Log out</DropdownItem>
                   </NavLink>
                 </DropdownMenu>
               </UncontrolledDropdown>

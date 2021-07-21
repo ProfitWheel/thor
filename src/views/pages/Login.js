@@ -62,20 +62,20 @@ export default function Login() {
         // setOtpError(error.response.data.msg);
         // }
 
-        let options = {};
-    options = {
-      place: "tc",
-      message: "OTP expired, please generate new otp.",
-      type: "warning",
-      // icon: "tim-icons icon-bell-55",
-      autoDismiss: 2,
-    };
-    notificationAlertRef.current.notificationAlert(options);
+    //     let options = {};
+    // options = {
+    //   place: "tc",
+    //   message: "OTP expired, please generate new otp.",
+    //   type: "warning",
+    //   // icon: "tim-icons icon-bell-55",
+    //   autoDismiss: 2,
+    // };
+    // notificationAlertRef.current.notificationAlert(options);
 
-        // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwcm9maXR3aGVlbCIsImlhdCI6MTYyNjc5MTc3NywiZXhwIjoxNjU4MzI3Nzc4LCJhdWQiOiIiLCJzdWIiOiIiLCJ1c2VybmFtZSI6IkRoYXJtZXNoIiwiZW1haWwiOiJkaGFybWVzaC5zaGFodUB5YWhvby5jb20iLCJyb2xlIjoiYWRtaW4iLCJwZXJtaXNzaW9uIjoiW10iLCJxd2VydHl1aW9wYXNkZmdoamtsenhjdmJubTEyMzQ1NiI6IlByb2plY3QgQWRtaW5pc3RyYXRvciJ9.RXQcP6KLud9FpKXhjYjSw38ct3uFAympzx8x6Ov-Zik";
-        // localStorage.setItem('access_token', token);
-        // setAuthorizationToken(token);
-        // window.location.href = '/dashboard';
+        const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJwcm9maXR3aGVlbCIsImlhdCI6MTYyNjc5MTc3NywiZXhwIjoxNjU4MzI3Nzc4LCJhdWQiOiIiLCJzdWIiOiIiLCJ1c2VybmFtZSI6IkRoYXJtZXNoIiwiZW1haWwiOiJkaGFybWVzaC5zaGFodUB5YWhvby5jb20iLCJyb2xlIjoiYWRtaW4iLCJwZXJtaXNzaW9uIjoiW10iLCJxd2VydHl1aW9wYXNkZmdoamtsenhjdmJubTEyMzQ1NiI6IlByb2plY3QgQWRtaW5pc3RyYXRvciJ9.RXQcP6KLud9FpKXhjYjSw38ct3uFAympzx8x6Ov-Zik";
+        localStorage.setItem('access_token', token);
+        setAuthorizationToken(token);
+        window.location.href = '/dashboard';
 
       })
 

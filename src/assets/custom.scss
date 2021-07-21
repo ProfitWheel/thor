@@ -21,19 +21,25 @@ body {
         width: 60px;
     }
     .sidebar-mini .main-panel > .content {
-        padding-left: 100px;
+        padding-left: 110px;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1199.98px)
 {
 .main-panel .content {
-    padding-left: 20px !important;
+    padding-left: 30px !important;
 }
 }
 
 .white-content .navbar.pw-navbar .navbar-toggler-bar {
     background: #666;
+}
+
+.white-content .sidebar p {
+    display: inline-block;
+    white-space: normal;
+    width: calc(100% - 34px);
 }
 
 .white-content .navbar.pw-navbar .navbar-nav li a:not(.dropdown-item) {
@@ -71,11 +77,12 @@ button:focus {
     margin-top: 70px;
 }
 
+@media (min-width: 768px) {
 .main-panel > .content {
-    padding: 70px 20px 30px 270px;
-    min-height: calc(100vh - 53px);
+    padding: 70px 30px 30px 280px;
+    min-height: calc(100vh - 33px);
 }
-
+}
 .main-panel {
     border-top: 0;
 }
@@ -119,7 +126,7 @@ input:-webkit-autofill:active {
 }
 
 .footer {
-    padding: 22px 30px 5px;
+    padding: 0px 30px 5px;
 }
 
 .navbar .navbar-brand {
@@ -233,6 +240,19 @@ a.loginfooteranchor {
     font-size: 16px;
     width: 24px;
     margin-right: 8px;
+    display: inline-block;
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px)
+{
+    .sidebar:before {
+        content: "";
+        left:48px;
+    }
+.nav-open .sidebar:before {
+    content: "";
+    left:48px;
+}
 }
 
 .sidebar .nav li.active > a:not([data-toggle="collapse"]):before,
@@ -256,6 +276,15 @@ a.loginfooteranchor {
     &:hover {
         color: #fff;
     }
+}
+
+
+@media (min-width: 768px) and (max-width: 1199.98px)
+{
+.nav-open .main-panel {
+    right: 0;
+    transform: none;
+}
 }
 
 .sidebar .nav li > a + div .nav,
@@ -411,3 +440,27 @@ a.loginfooteranchor {
 }
 }
   
+span.twolinestext {
+    white-space: normal;
+    display: inline-block;
+    word-break: break-word;
+    line-height: 1.4;
+    width: calc(100% - 10px);
+}
+
+@media only screen and (min-width: 1200px) {
+.sidebar-mini {
+    span.twolinestext {
+        white-space: nowrap;
+    }
+    .sidebar-wrapper:hover {
+        span.twolinestext {
+            white-space: normal;
+        }
+    }
+}
+
+.white-content .sidebar {
+    transition: none;
+}
+}
