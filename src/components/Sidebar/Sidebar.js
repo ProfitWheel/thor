@@ -21,13 +21,25 @@ import { NavLink } from "react-router-dom";
 // reactstrap components
 import { Nav, Collapse } from "reactstrap";
 
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+
 export default function Sidebar(props) {
 
-  const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1)
+  const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1);
 
   const [pathName, setPathName] = useState(getLastItem(window.location.pathname));
 
   const [menuState, setMenuState] = React.useState({});
+  
+  const [signOut, setSignOut] = useState(false);
+
+  useEffect(() => {
+    if (signOut) {
+      localStorage.removeItem("access_token");
+      window.location.href = '/';
+    }
+  }, [signOut]);
 
   useEffect(() => {
     setMenuState({});
@@ -41,7 +53,18 @@ export default function Sidebar(props) {
       }
     }}>
       <div className="sidebar-wrapper">
-
+      <div className="logo">
+      <div className="logo-img">
+            <AccountCircleIcon style={{ color: "#fff",fontSize: "20px" }}/>
+          </div>
+          <div
+          className="logo-text"
+          target="_blank"
+        >
+          <span>Dharmesh Shahu</span>
+            <span className="assignedrole">Admin</span>
+        </div>
+          </div>
         <ul className="nav">
 
           {/* dashboard start */}
@@ -191,7 +214,7 @@ export default function Sidebar(props) {
                         >
                           <div className="siderbarelement">
                             <span className="sidebar-normal">
-                            <span className="twolinestext">Audience Receptivity Score</span>
+                            <span className="twolinestext">Campaign Grouping</span>
                             </span>
                           </div>
                         </NavLink>
@@ -206,7 +229,7 @@ export default function Sidebar(props) {
                         >
                           <div className="siderbarelement">
                             <span className="sidebar-normal">
-                            <span className="twolinestext">Cross Budget Optimization</span>
+                            <span className="twolinestext">Product Grouping</span>
                             </span>
                           </div>
                         </NavLink>
@@ -241,6 +264,57 @@ export default function Sidebar(props) {
 
           {/* control room */}
 
+          {/* profitbridge */}
+
+          <li className={
+            pathName === "ars"
+
+              ? "active" : null}>
+            <a
+              href="#pablo"
+              data-toggle="collapse"
+              aria-expanded={menuState["profitbridge"]}
+              onClick={(e) => {
+                e.preventDefault();
+                let st = {};
+                st["profitbridge"] = !menuState["profitbridge"];
+                setMenuState({ ...menuState, ...st });
+              }}
+            >
+              <div className="siderbarelement">
+                <i className="tim-icons icon-components" />
+                <p>
+                <span className="twolinestext">Profit Bridge</span>
+                  <b className="caret caret2" />
+                </p>
+              </div>
+            </a>
+            <Collapse isOpen={menuState["profitbridge"]}>
+              <ul className="nav">
+                {/* Client manager */}
+                <li className={
+                  pathName === "ars"
+                    ? "active" : null}>
+                  <NavLink
+                    to={"/ars"}
+                    activeClassName=""
+                  >
+                    <div className="siderbarelement">
+                      <span className="sidebar-normal">
+                      <span className="twolinestext">Audience Receptivity Score</span>
+                      </span>
+                    </div>
+                  </NavLink>
+                </li>
+
+                {/* Client manager */}
+
+              </ul>
+            </Collapse>
+          </li>
+
+          {/* profit bridge */}
+
           {/* reports */}
           <li className={
             pathName === "reports"
@@ -274,6 +348,22 @@ export default function Sidebar(props) {
             </NavLink>
           </li>
           {/* settings */}
+
+          {/* logout */}
+          <li>
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                setSignOut(true);
+              }}
+            >
+              <>
+                <i className="tim-icons icon-button-power" />
+                <p><span className="twolinestext">Log Out</span></p>
+              </>
+            </a>
+          </li>
+          {/* logout */}
 
 
 

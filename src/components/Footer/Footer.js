@@ -24,7 +24,7 @@ export default function Footer(props) {
 
         <div className="copyright">
           © {new Date().getFullYear()} {" "}
-          <a href="https://www.profitwheel.com/" target="_blank">
+          <a href="https://www.profitwheel.com/" style={{fontWeight: "bold"}} target="_blank">
             ProfitWheel
           </a>{" "}
           Data Technologies Pvt Ltd. All Rights Reserved.

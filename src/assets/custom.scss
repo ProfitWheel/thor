@@ -1,5 +1,9 @@
 @import "variable.scss";
 
+.white-content .footer .copyright {
+    color: #444;
+}
+
 body {
     font-size: 12px;
 }
@@ -25,7 +29,7 @@ body {
         padding-left: 110px;
     }
 
-   
+
 }
 
 @media (min-width: 768px) and (max-width: 1199.98px) {
@@ -178,6 +182,7 @@ a:focus {
 
 a.loginfooteranchor {
     color: #1d54a7;
+    font-weight: bold;
 }
 
 .login-page .card-login.card-white .input-group-prepend .input-group-text {
@@ -199,14 +204,8 @@ a.loginfooteranchor {
 }
 
 .full-page.login-page {
-    background: #448ef6;
-    background: -moz-linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
-    background: -webkit-gradient(left bottom, right top, color-stop(0%, #29bae4), color-stop(100%, #ee76ad));
-    background: -webkit-linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
-    background: -o-linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
-    background: -ms-linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
-    background: linear-gradient(45deg, #29bae4 0%, #ee76ad 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#448ef6', endColorstr='#af05a9', GradientType=1);
+    background-size: cover;
+    background-position: center;
 }
 
 .login-page {
@@ -228,7 +227,7 @@ a.loginfooteranchor {
 }
 
 .login-page .card-login.card-white {
-    background: #f1f1f1;
+    background: #f5f6fa;
 }
 
 .login-page .card-login.card-white .form-control {
@@ -329,10 +328,9 @@ a.loginfooteranchor {
     z-index: 99999;
     width: 100vw;
     height: 100vh;
-    display: grid;
-    align-items: center;
+    display: block;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(125, 125, 125, 0.3);
 
     .spinnerrotate {
         width: 50px;
@@ -357,6 +355,9 @@ a.loginfooteranchor {
         position: absolute;
         width: 50px;
         height: 50px;
+        top: calc(50% - 25px);
+        left: calc(50% - 25px);
+        transform: translate(-50%, -50%);
         border-radius: 50%;
         border-bottom: 4px solid #0071bc;
 
@@ -451,16 +452,76 @@ a.loginfooteranchor {
     }
 }
 
+
 span.twolinestext {
     white-space: normal;
     display: inline-block;
     word-break: break-word;
     line-height: 1.4;
     width: calc(100% - 10px);
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+li.active {
+    >a span.twolinestext {
+        color: #fff;
+        font-weight: 400;
+    }
+}
+
+
+
+.full-page.login-page .footer .copyright {
+    color: #ccc;
+    // a.loginfooteranchor, a.loginfooteranchor:hover, a.loginfooteranchor:active, a.loginfooteranchor:focus {
+    //     color: #adb5bd;
+    // }
+}
+
+.sidebar .nav,
+.off-canvas-sidebar .nav {
+    margin-top: 10px;
+}
+
+.sidebar {
+    .logo {
+        padding: 15px 20px;
+        cursor: default;
+    }
+
+    .logo-img {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .logo-text {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 10px;
+        color: #fff;
+        width: calc(100% - 34px);
+
+        span {
+            display: block;
+            font-size: 14px;
+
+            &.assignedrole {
+                font-size: 12px;
+                opacity: 0.85;
+            }
+        }
+    }
 }
 
 @media only screen and (min-width: 1200px) {
     .sidebar-mini {
+        .logo-text {
+            display: none;
+        }
+
         span.twolinestext {
             white-space: nowrap;
         }
@@ -471,6 +532,11 @@ span.twolinestext {
         }
 
         .sidebar-wrapper:hover {
+
+            .logo-text {
+                display: inline-block;
+            }
+
             span.twolinestext {
                 white-space: normal;
             }

@@ -199,7 +199,7 @@ export default function Login() {
   return (
     <div className="wrapper wrapper-full-page">
       <NotificationAlert ref={notificationAlertRef} />
-      <div className="full-page login-page">
+      <div className="full-page login-page" style={{backgroundImage: "url(/images/businesswall.jpg)"}}>
         <div className="content">
           <Container>
             <Col className="ml-auto mr-auto" lg="4" md="6">

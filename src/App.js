@@ -14,6 +14,7 @@ import Reports from './views/pages/Reports.js';
 import Settings from './views/pages/Settings.js';
 import UnAuthorized from './views/pages/UnAuthorized.js';
 import NotFound from './views/pages/NotFound.js';
+import AudienceReceptivityScore from './views/pages/AudienceReceptivityScore.js';
 
 const token = localStorage.getItem("access_token");
 
@@ -75,6 +76,7 @@ export default function App() {
           <PrivateRoute path="/product-group" exact component={ProductGrouping} />
           <PrivateRoute path="/reports" exact component={Reports} />
           <PrivateRoute path="/settings" exact component={Settings} />
+          <PrivateRoute path="/ars" exact component={AudienceReceptivityScore} />
           <Route path="/unauthorized" exact component={UnAuthorized} />
           <Route path="*" exact component={NotFound} />
         </Switch>
