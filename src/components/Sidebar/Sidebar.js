@@ -191,7 +191,7 @@ export default function Sidebar(props) {
                         >
                           <div className="siderbarelement">
                             <span className="sidebar-normal">
-                            <span className="twolinestext">Campaign Group</span>
+                            <span className="twolinestext">Audience Receptivity Score</span>
                             </span>
                           </div>
                         </NavLink>
@@ -206,7 +206,7 @@ export default function Sidebar(props) {
                         >
                           <div className="siderbarelement">
                             <span className="sidebar-normal">
-                            <span className="twolinestext">Product Group</span>
+                            <span className="twolinestext">Cross Budget Optimization</span>
                             </span>
                           </div>
                         </NavLink>
