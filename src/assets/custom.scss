@@ -190,7 +190,7 @@ a.loginfooteranchor {
 }
 
 .loginscreenlogo {
-    padding: 40px 20px 10px;
+    padding: 40px 20px 0px;
     text-align: center;
 
     img {
@@ -206,6 +206,14 @@ a.loginfooteranchor {
 .full-page.login-page {
     background-size: cover;
     background-position: center;
+    position: relative;
+    .login-page-content {
+        position: absolute;
+        top: 45%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        width:100%;
+    }
 }
 
 .login-page {
@@ -550,5 +558,69 @@ li.active {
 
     .white-content .sidebar {
         transition: none;
+    }
+}
+
+a.footer-link {
+    &.white {
+        color: #fff;
+        &:hover {
+            color: #e8e8e8;
+        }
+    }
+}
+
+.navbar-right-toggles {
+
+    .creditdisplay {
+        display: inline-grid;
+        align-items: center;
+        vertical-align: middle;
+        h5 {
+            margin-bottom: 0;
+            line-height: 44px;
+            font-size: 14px;
+            color: #444;
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        display: inline-block;
+        vertical-align: middle;
+        padding-left: 15px;
+        li {
+            display: inline-grid;
+            font-size: 16px;
+            line-height: 44px;
+            padding: 0 5px;
+            position: relative;
+            align-items: center;
+            cursor: pointer;
+            i {
+            color: #fff;
+            position: relative;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            &:before {
+            position: relative;
+            top:6px;
+            }
+            &.fa-facebook {
+                background-color: #4267B2;
+            }
+            &.fa-google {
+                background-color: #db3236;
+                color: #fff;
+            }
+            &.fa-amazon {
+                background-color: #FF9900;
+                color: #000;
+            }
+            }
+        }
     }
 }

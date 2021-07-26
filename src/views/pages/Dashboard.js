@@ -33,7 +33,8 @@ export default function Dashboard(props) {
       <div className="content">
             <Card style={{padding: "15px"}}>
               Dashboard
-            </Card>
+              </Card>
+            
             <PwLoader loading={loading}/>
       </div>
     </Layout>

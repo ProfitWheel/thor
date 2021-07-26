@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { authenticate, resetOtp, setAuthorizationToken } from "./../../api/auth.js";
 import PwLoader from './../../components/PwLoader';
 import NotificationAlert from "react-notification-alert";
+import 'font-awesome/css/font-awesome.min.css';
 import { NavLink } from "react-router-dom";
 // reactstrap components
 import {
@@ -22,7 +23,7 @@ import {
   Col,
 } from "reactstrap";
 import { useHistory } from 'react-router-dom';
-
+import 'font-awesome/css/font-awesome.min.css'
 const errorstyle = {
   marginBottom: '0',
   position: 'absolute',
@@ -34,12 +35,18 @@ const errorstyle = {
   textAlign: 'center'
 }
 
-export default function Login() {
+export default function RegisterCorporate() {
   const [state, setState] = useState({});
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [companyName, setCompanyName] = useState('');
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
-  const [emailError, setEmailError] = useState('');
   const [otpError, setOtpError] = useState('');
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
+  const [companyNameError, setCompanyNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [loading, setLoading] = useState(false);
   
   const notificationAlertRef = useRef(null);
@@ -83,6 +90,7 @@ export default function Login() {
 
   }
 
+
   //otp generate
   const generateOtp = (userdata) => {
     resetOtp(userdata)
@@ -115,19 +123,28 @@ export default function Login() {
       })
     }
 
-  //input change function
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  }
-
-  const handleOtp = (e) => {
-    setOtp(e.target.value);
-  }
-
   //Custom Validator
   const validate = () => {
+    let firstNameErrors = "";
+    let lastNameErrors = "";
+    let companyNameErrors = "";
     let emailErrors = "";
     let otpErrors = "";
+
+    if (!firstName) {
+      firstNameErrors = "Please enter first name";
+      console.log(firstNameErrors);
+    }
+    
+    if (!lastName) {
+      lastNameErrors = "Please enter last name";
+      console.log(lastNameErrors);
+    }
+
+    if (!companyName) {
+      companyNameErrors = "Please enter company name";
+      console.log(companyNameErrors);
+    }
 
     if (!email.includes("@")) {
       emailErrors = "Please enter valid email id";
@@ -139,20 +156,47 @@ export default function Login() {
       console.log(otpErrors);
     }
 
-    if (emailErrors || otpErrors) {
+    if (firstNameErrors || lastNameErrors || companyNameErrors || emailErrors || otpErrors) {
+      setFirstNameError(firstNameErrors);
+      setLastNameError(lastNameErrors);
+      setCompanyNameError(companyNameErrors);
       setEmailError(emailErrors);
       setOtpError(otpErrors);
       return false;
     }
     else {
+      setFirstNameError("");
+      setLastNameError("");
+      setCompanyNameError("");
       setEmailError("");
       setOtpError("");
     }
     return true;
   };
 
+
+  //submit function to call ajax if validator is successful
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const isValid = validate();
+    if (isValid) {
+      submitForm({
+        firstName: firstName,
+        lastName: lastName,
+        companyName: companyName,
+        email: email,
+        otp: otp
+      });
+      setLoading(true);
+    }
+
+  }
+
   //Custom Validator OTP
   const otpValidate = () => {
+    let firstNameErrors = "";
+    let lastNameErrors = "";
+    let companyNameErrors = "";
     let emailErrors = "";
     let otpErrors = "";
 
@@ -162,30 +206,22 @@ export default function Login() {
     }
 
     if (emailErrors) {
+      setFirstNameError(firstNameErrors);
+      setLastNameError(lastNameErrors);
+      setCompanyNameError(companyNameErrors);
       setEmailError(emailErrors);
       setOtpError(otpErrors);
       return false;
     }
     else {
+      setFirstNameError("");
+      setLastNameError("");
+      setCompanyNameError("");
       setEmailError("");
       setOtpError("");
     }
     return true;
   };
-
-  //submit function to call ajax if validator is successful
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const isValid = validate();
-    if (isValid) {
-      submitForm({
-        email: email,
-        otp: otp
-      });
-      setLoading(true);
-    }
-
-  }
 
   //submit function to call ajax if validator is successful
   const handleOtpSubmit = () => {
@@ -198,13 +234,14 @@ export default function Login() {
     }
   }
 
+
   return (
     <div className="wrapper wrapper-full-page">
       <NotificationAlert ref={notificationAlertRef} />
       <div className="full-page login-page" style={{backgroundImage: "url(/images/businesswall.jpg)"}}>
         <div className="login-page-content">
           <Container>
-            <Col className="ml-auto mr-auto" lg="4" md="6">
+            <Col className="ml-auto mr-auto" lg="6" md="6">
               <Form className="form" onSubmit={(event) => handleSubmit(event)}>
                 <Card className="card-login card-white">
                   <div className="loginscreenlogo">
@@ -218,9 +255,86 @@ export default function Login() {
                   <h5 
                   style={{ color: "#575757", fontWeight:"bold", fontSize: "14px" }}
                   >
-                     Login
+                     Corporate Registration
                       </h5>
                       </Col>
+                    <Row>
+                  <Col className="ml-auto mr-auto" sm="6">
+                  <div style={{position: "relative"}}>
+                    <InputGroup
+                      className={classnames({
+                        "input-group-focus": state.firstName,
+                      })}
+                    >
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="tim-icons icon-paper" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        placeholder="First Name"
+                        type="text"
+                        onChange={(e) => {
+                          setFirstName(e.target.value);
+                        }}
+                        onFocus={(e) => setState({ ...state, firstName: true })}
+                        onBlur={(e) => setState({ ...state, firstName: false })}
+                      />
+                    </InputGroup>
+                    <p style={errorstyle}>{firstNameError}</p>
+                    </div>
+                  </Col>
+                  <Col className="ml-auto mr-auto" sm="6">
+                  <div style={{position: "relative"}}>
+                    <InputGroup
+                      className={classnames({
+                        "input-group-focus": state.lastName,
+                      })}
+                    >
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="tim-icons icon-paper" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        placeholder="Last Name"
+                        type="text"
+                        onChange={(e) => {
+                          setLastName(e.target.value);
+                        }}
+                        onFocus={(e) => setState({ ...state, lastName: true })}
+                        onBlur={(e) => setState({ ...state, lastName: false })}
+                      />
+                    </InputGroup>
+                    <p style={errorstyle}>{lastNameError}</p>
+                    </div>
+                  </Col>
+                  </Row>
+
+                    <div style={{position: "relative"}}>
+                    <InputGroup
+                      className={classnames({
+                        "input-group-focus": state.companyName,
+                      })}
+                    >
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="tim-icons icon-world" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        placeholder="Enter Company Name"
+                        type="text"
+                        onChange={(e) => {
+                          setCompanyName(e.target.value);
+                        }}
+                        onFocus={(e) => setState({ ...state, companyName: true })}
+                        onBlur={(e) => setState({ ...state, companyName: false })}
+                      />
+                    </InputGroup>
+                    <p style={errorstyle}>{companyNameError}</p>
+                    </div>
+
                     <div style={{position: "relative"}}>
                     <InputGroup
                       className={classnames({
@@ -236,7 +350,7 @@ export default function Login() {
                         placeholder="Enter Email"
                         type="email"
                         onChange={(e) => {
-                          handleEmail(e)
+                          setEmail(e.target.value);
                         }}
                         onFocus={(e) => setState({ ...state, emailFocus: true })}
                         onBlur={(e) => setState({ ...state, emailFocus: false })}
@@ -293,48 +407,25 @@ export default function Login() {
                   <Col className="ml-auto mr-auto" sm="12">
                     <Button
                       block
-                      className="mb-2"
+                      className="mb-3"
                       color="info"
                       // size="lg"
                     >
-                      Login
+                      Register
                     </Button>
-                    </Col>
-                    <Col className="ml-auto mr-auto" sm="12">
-                    <Button block className="mb-2" color="facebook">
-                    <i class="fa fa-facebook" aria-hidden="true" style={{fontSize: "18px",paddingRight: "15px",position: "relative",top: "1px"}}></i> Login with facebook
-    </Button>
-    </Col>
-    <Col className="ml-auto mr-auto" sm="12">
-                    <Button block color="google">
-                    <i class="fa fa-google" aria-hidden="true" style={{fontSize: "18px",paddingRight: "15px",position: "relative",top: "1px"}}></i> Login with Google
-    </Button>
-    </Col>
-
-
-                      </div>
+                  </Col>
+                  </div>
                 </Card>
               </Form>
               <Row>
-              <Col className="ml-auto mr-auto" sm="4">
+              <Col className="ml-auto mr-auto" sm="12">
               <div className="text-left">
                       <h5 style={{ marginBottom: "0px" }}>
                       <NavLink
-              to={"/register"}
+              to={"/login"}
               style={{ fontWeight: "bold" }}
                           className="footer-link white"
-            >Register</NavLink>
-                      </h5>
-                      </div>
-                      </Col>
-                      <Col className="ml-auto mr-auto" sm="8">
-                      <div className="text-right">
-                      <h5 style={{ marginBottom: "0px" }}>
-                      <NavLink
-              to={"/register-corporate"}
-              style={{ fontWeight: "bold" }}
-                          className="footer-link white" 
-            >Corporate Registration</NavLink>
+            ><i style={{fontSize: "10px"}} class="fa fa-chevron-left" aria-hidden="true"></i> Login</NavLink>
                       </h5>
                       </div>
                       </Col>

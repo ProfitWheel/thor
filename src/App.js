@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect, useHistory } from 'react-router
 import jwt from 'jsonwebtoken';
 import Login from './views/pages/Login.js';
 import Register from './views/pages/Register.js';
+import RegisterCorporate from './views/pages/RegisterCorporate.js';
 import Dashboard from './views/pages//Dashboard.js';
 import UserManager from './views/pages/UserManager.js';
 import CompanyManager from './views/pages/CompanyManager.js';
@@ -67,7 +68,8 @@ export default function App() {
         <Switch>
           <LoggedIn path="/" exact component={Login} />
           <LoggedIn path="/login" exact component={Login} />
-          <PrivateRoute path="/register" exact component={Register} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/register-corporate" exact component={RegisterCorporate} />
           <PrivateRoute path="/dashboard" exact component={Dashboard} />
           <PrivateRoute path="/user-manager" exact component={UserManager} />
           <PrivateRoute path="/company-manager" exact component={CompanyManager} />

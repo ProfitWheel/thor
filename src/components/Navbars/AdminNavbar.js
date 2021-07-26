@@ -18,6 +18,7 @@ import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import { Link, useHistory } from "react-router-dom";
+import 'font-awesome/css/font-awesome.min.css';
 
 // reactstrap components
 import {
@@ -100,68 +101,16 @@ const AdminNavbar = (props) => {
               <img src="/images/pw-logo-small.png" alt="pwlogo" style={{ width: "150px" }} />
             </Link>
           </div>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navigation"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            onClick={() => { setCollapseOpen(!collapseOpen) }}
-          >
-            <span className="navbar-toggler-bar navbar-kebab" />
-            <span className="navbar-toggler-bar navbar-kebab" />
-            <span className="navbar-toggler-bar navbar-kebab" />
-          </button>
-          <Collapse navbar isOpen={collapseOpen}>
-            <Nav className="ml-auto" navbar>
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  style={{ marginTop: "1px" }}
-                  color="default"
-                  data-toggle="dropdown"
-                  nav
-                >
-                  <i className="tim-icons icon-sound-wave syncanchor" />
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-navbar" right tag="ul">
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item" onClick={(e) => { e.preventDefault(); }}>
-                      Authorize Facebook
-                    </DropdownItem>
-                  </NavLink>
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      Authorize Amazon
-                    </DropdownItem>
-                  </NavLink>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  data-toggle="dropdown"
-                  nav
-                  onClick={(e) => e.preventDefault()}
-                  style={{ marginTop: "1px" }}
-                >
-                  <i className="tim-icons icon-button-power" />
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-navbar" right tag="ul">
-                  {/* <li style={{padding: "5px 30px",color: "#9A9A9A"}}>
-                    Dharmesh Shahu
-                  </li>
-                  <DropdownItem divider tag="li" /> */}
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item" onClick={(e) => { e.preventDefault();setSignOut(true); }}>Log out</DropdownItem>
-                  </NavLink>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <li className="separator d-lg-none" />
-            </Nav>
-          </Collapse>
+         <div className="text-right navbar-right-toggles">
+           <div className="creditdisplay">
+             <h5>Credits: <span>{100}</span></h5>
+             </div>
+              <ul>
+                <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+                <li><i class="fa fa-google" aria-hidden="true"></i></li>
+                <li><i class="fa fa-amazon" aria-hidden="true"></i></li>
+              </ul>
+           </div>
         </Container>
       </Navbar>
     </>

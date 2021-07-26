@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let url = "https://dev.profitwheel.com/api";
+let url = "http://35.200.172.84/api";
 
 //Set Authorization Token
 export function setAuthorizationToken(token) {
