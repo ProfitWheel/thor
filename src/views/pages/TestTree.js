@@ -30,11 +30,11 @@ export default function TestTree(props) {
 
     return (
       <div>
-        <div>
+        <div style={{padding: "50px 15px 0"}}>
       <Treemap data={interestData} addToCart={cartAdd}/>
       </div>
       <div>
-      <div style={{padding: "15px"}}><pre style={{background: "#eee", padding:"15px", fontSize: "14px"}}>{JSON.stringify(cart, null, 2) }</pre></div>
+      <div style={{padding: "30px"}}><pre style={{background: "#eee", padding:"15px", fontSize: "14px"}}>{JSON.stringify(cart, null, 2) }</pre></div>
         </div>
       </div>
     );

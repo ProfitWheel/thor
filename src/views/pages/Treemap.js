@@ -25,6 +25,13 @@ export default function Treemap(props) {
     
     // enable navigation
     // x.navigationBar = new am4charts.NavigationBar();
+    // chart.zoomOutButton.icon.disabled = true;  
+    x.zoomOutButton.parent = x.tooltipContainer;
+
+    x.zoomOutButton.align = "right";
+    x.zoomOutButton.valign = "top";
+    x.zoomOutButton.marginRight = 15;
+    x.zoomOutButton.marginTop = -30;
     
     // create template of levels
     var columnTemplate1 = x.seriesTemplates.create("0").columns.template;
