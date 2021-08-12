@@ -16,6 +16,7 @@ import Settings from './views/pages/Settings.js';
 import UnAuthorized from './views/pages/UnAuthorized.js';
 import NotFound from './views/pages/NotFound.js';
 import AudienceReceptivityScore from './views/pages/AudienceReceptivityScore.js';
+import TestTree from './views/pages/TestTree.js';
 
 const token = localStorage.getItem("access_token");
 
@@ -30,8 +31,8 @@ if (token && token !== "undefined") {
     isExpired = true;
   }
 
-  console.log("exp time", expirytime);
-  console.log("current time", dateNow.getTime());
+  // console.log("exp time", expirytime);
+  // console.log("current time", dateNow.getTime());
 }
 
 else {
@@ -79,6 +80,7 @@ export default function App() {
           <PrivateRoute path="/reports" exact component={Reports} />
           <PrivateRoute path="/settings" exact component={Settings} />
           <PrivateRoute path="/ars" exact component={AudienceReceptivityScore} />
+          <Route path="/testmap" exact component={TestTree} />
           <Route path="/unauthorized" exact component={UnAuthorized} />
           <Route path="*" exact component={NotFound} />
         </Switch>
