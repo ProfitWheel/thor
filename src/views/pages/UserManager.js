@@ -71,13 +71,13 @@ export default function UserManager(props) {
 
   const [testState, setTestState] = useState("Testing Start");
 
-  useEffect(()=>{
-    console.log(testState);
-  },[]);
+  // useEffect(()=>{
+  //   console.log(testState);
+  // },[]);
 
-  useEffect(()=>{
-    console.log(testState);
-  },[testState]);
+  // useEffect(()=>{
+  //   console.log(testState);
+  // },[testState]);
 
   const columns = [
     {

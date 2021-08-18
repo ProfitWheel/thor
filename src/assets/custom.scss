@@ -234,6 +234,10 @@ a.loginfooteranchor {
     overflow: hidden;
 }
 
+.sidebar-mini .sidebar-wrapper:hover {
+    overflow: auto;
+}
+
 .login-page .card-login.card-white {
     background: #f5f6fa;
 }

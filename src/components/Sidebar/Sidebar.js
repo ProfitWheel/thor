@@ -16,7 +16,7 @@
 */
 /*eslint-disable*/
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 
 // reactstrap components
 import { Nav, Collapse } from "reactstrap";
@@ -26,6 +26,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 export default function Sidebar(props) {
 
+  const history = useHistory();
+  const location = useLocation();
+
   const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1);
 
   const [pathName, setPathName] = useState(getLastItem(window.location.pathname));
@@ -33,6 +36,201 @@ export default function Sidebar(props) {
   const [menuState, setMenuState] = React.useState({});
   
   const [signOut, setSignOut] = useState(false);
+
+  const navList = [
+    {
+      title: "Control Room",
+      path: null,
+      pageId: "controlroom",
+      icon: <i className="tim-icons icon-settings-gear-63" />,
+      subNav: [
+        {
+          title: "Access Manager",
+          path: null,
+          pageId: "accessmanager",
+          icon: null,
+          subNav: [
+              {
+                title: "User Manager",
+                path: "/user-manager",
+                pageId: "user-manager",
+                icon: null
+              },
+
+              {
+                title: "Company Manger",
+                path: "/company-manager",
+                pageId: "company-manager",
+                icon: null
+              },
+          ]
+        },
+
+        {
+          title: "Group Manager",
+          path: null,
+          pageId: "groupmanager",
+          icon: null,
+          subNav: [
+              {
+                title: "Campaign Grouping",
+                path: "/campaign-group",
+                pageId: "campaign-group",
+                icon: null
+              },
+
+              {
+                title: "Product Grouping",
+                path: "/product-group",
+                pageId: "product-group",
+                icon: null
+              },
+          ]
+        },
+        {
+          title: "Client Manager",
+          path: "/client-manager",
+          pageId: "client-manager",
+          icon: null
+        },
+      ]
+    },
+    {
+      title: "Profit Bridge",
+      path: null,
+      pageId: "profitbridge",
+      icon: <i className="tim-icons icon-components" />,
+      subNav: [
+          {
+            title: "Audience Receptivity Score",
+            path: "/ars",
+            pageId: "ars",
+            icon: null
+          }
+      ]
+    },
+    {
+      title: "Reports",
+      path: "/reports",
+      pageId: "reports",
+      icon: <i className="tim-icons icon-notes" />
+    },
+    {
+      title: "Settings",
+      path: "/settings",
+      pageId: "settings",
+      icon: <i className="tim-icons icon-settings" />
+    }
+  ];
+
+  const navCreate = (routes) => {
+      return routes.map(routeItem => {
+          if(!routeItem.hasOwnProperty('subNav')) {
+            return (
+              <li className={location.pathname === routeItem.path ? "active" : null}>
+                <a
+                  href={routeItem.path}
+                  onClick={(e)=>{
+                    e.preventDefault();
+                    if(routeItem.path) {
+                      history.push(routeItem.path);
+                    }
+                  }}
+                >
+                  <div className="siderbarelement">
+                    {routeItem.icon}
+                    <p><span className="twolinestext">{routeItem.title}</span></p>
+                  </div>
+                </a>
+              </li>
+            )
+          }
+          else {
+            return (
+              <li className={routeItem.subNav?.some((item => item.path === location.pathname)) || routeItem.subNav?.some(topItem => topItem.subNav?.some((item => item.path === location.pathname))) ? "active" : null}>
+                <a
+                  href={routeItem.path}
+                  data-toggle="collapse"
+                  aria-expanded={menuState[routeItem.pageId]}
+                  onClick={(e)=>{
+                    e.preventDefault();
+                    let st = {};
+                    st[routeItem.pageId] = !menuState[routeItem.pageId];
+                    setMenuState({ ...menuState, ...st });
+                  }}
+                >
+                  <div className="siderbarelement">
+                    {routeItem.icon}
+                    <p><span className="twolinestext">{routeItem.title}</span>
+                    <b className="caret caret2" /></p>
+                  </div>
+                </a>
+                <Collapse isOpen={menuState[routeItem.pageId]}>
+              <ul className="nav">
+                    {navCreateChild(routeItem.subNav)}
+              </ul>
+              </Collapse>
+              </li>
+            )
+          }
+      });
+  }
+
+  const navCreateChild = (routes) => {
+    return routes.map(routeItem => {
+        if(!routeItem.hasOwnProperty('subNav')) {
+          return (
+            <li className={location.pathname === routeItem.path ? "active" : null}>
+              <a
+                href={routeItem.path}
+                onClick={(e)=>{
+                  e.preventDefault();
+                  if(routeItem.path) {
+                    history.push(routeItem.path);
+                  }
+                }}
+              >
+                <div className="siderbarelement">
+                            <span className="sidebar-normal">
+                            <span className="twolinestext">{routeItem.title}</span>
+                            </span>
+                          </div>
+              </a>
+            </li>
+          )
+        }
+        else {
+          return (
+            <li className={routeItem.subNav?.some((item => item.path === location.pathname)) || routeItem.subNav?.some(topItem => topItem.subNav?.some((item => item.path === location.pathname))) ? "active" : null}>
+              <a
+                href={routeItem.path}
+                data-toggle="collapse"
+                aria-expanded={menuState[routeItem.pageId]}
+                onClick={(e)=>{
+                  e.preventDefault();
+                  let st = {};
+                  st[routeItem.pageId] = !menuState[routeItem.pageId];
+                  setMenuState({ ...menuState, ...st });
+                }}
+              >
+
+<div className="siderbarelement">
+                      <span className="sidebar-normal">
+                      <span className="twolinestext">{routeItem.title}</span>
+                        <b className="caret" />
+                      </span>
+                    </div>
+              </a>
+              <Collapse isOpen={menuState[routeItem.pageId]}>
+            <ul className="nav">
+                  {navCreateChild(routeItem.subNav)}
+            </ul>
+            </Collapse>
+            </li>
+          )
+        }
+    });
+}
 
   useEffect(() => {
     if (signOut) {
@@ -46,6 +244,10 @@ export default function Sidebar(props) {
     // console.log(props.sidebarOpened);
   }, [props.sidebarOpened]);
 
+  useEffect(()=>{
+    console.log(location.pathname);
+  },[]);
+
   return (
     <div className="sidebar" data="blue" onMouseLeave={()=>{
       if(document.getElementsByTagName("body")[0].classList.contains("sidebar-mini")) {
@@ -53,7 +255,7 @@ export default function Sidebar(props) {
       }
     }}>
       <div className="sidebar-wrapper">
-      <div className="logo">
+      {/* <div className="logo">
       <div className="logo-img">
             <AccountCircleIcon style={{ color: "#fff",fontSize: "20px" }}/>
           </div>
@@ -64,9 +266,10 @@ export default function Sidebar(props) {
           <span>Dharmesh Shahu</span>
             <span className="assignedrole">Admin</span>
         </div>
-          </div>
-        <ul className="nav">
+          </div> */}
 
+          <ul className="nav">
+            
           {/* dashboard start */}
           <li className={
             pathName === "dashboard"
@@ -84,270 +287,7 @@ export default function Sidebar(props) {
           </li>
           {/* dashboard end */}
 
-          {/* Control Room */}
-
-          <li className={
-            pathName === "user-manager" ||
-              pathName === "company-manager" ||
-              pathName === "campaign-group" ||
-              pathName === "product-group" ||
-              pathName === "client-manager"
-
-              ? "active" : null}>
-            <a
-              href="#pablo"
-              data-toggle="collapse"
-              aria-expanded={menuState["controlroom"]}
-              onClick={(e) => {
-                e.preventDefault();
-                let st = {};
-                st["controlroom"] = !menuState["controlroom"];
-                setMenuState({ ...menuState, ...st });
-              }}
-            >
-              <div className="siderbarelement">
-                <i className="tim-icons icon-settings-gear-63" />
-                <p>
-                <span className="twolinestext">Control room</span>
-                  <b className="caret caret2" />
-                </p>
-              </div>
-            </a>
-            <Collapse isOpen={menuState["controlroom"]}>
-              <ul className="nav">
-
-                {/* access manager */}
-                <li className={
-                  pathName === "user-manager" ||
-                    pathName === "company-manager"
-
-                    ? "active" : null}>
-                  <a
-                    href="#pablo"
-                    data-toggle="collapse"
-                    aria-expanded={menuState["accessmanager"]}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      let st = {};
-                      st["accessmanager"] = !menuState["accessmanager"];
-                      setMenuState({ ...menuState, ...st });
-                    }}
-                  >
-                    <div className="siderbarelement">
-                      <span className="sidebar-normal">
-                      <span className="twolinestext">Access Manager</span>
-                        <b className="caret" />
-                      </span>
-                    </div>
-                  </a>
-                  <Collapse isOpen={menuState["accessmanager"]}>
-                    <ul className="nav">
-                      <li className={
-                        pathName === "user-manager"
-
-                          ? "active" : null}>
-                        <NavLink
-                          to={"/user-manager"}
-                          activeClassName=""
-                        >
-                          <div className="siderbarelement">
-                            <span className="sidebar-normal">
-                            <span className="twolinestext">User Manager</span>
-                            </span>
-                          </div>
-                        </NavLink>
-                      </li>
-                      <li className={
-                        pathName === "company-manager"
-
-                          ? "active" : null}>
-                        <NavLink
-                          to={"/company-manager"}
-                          activeClassName=""
-                        >
-                          <div className="siderbarelement">
-                            <span className="sidebar-normal">
-                            <span className="twolinestext">Company Manager</span>
-                            </span>
-                          </div>
-                        </NavLink>
-                      </li>
-                    </ul>
-                  </Collapse>
-                </li>
-
-                {/* access manager */}
-
-                {/* group manager */}
-                <li className={
-                  pathName === "campaign-group" ||
-                    pathName === "product-group"
-
-                    ? "active" : null}>
-                  <a
-                    href="#pablo"
-                    data-toggle="collapse"
-                    aria-expanded={menuState["groupmanager"]}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      let st = {};
-                      st["groupmanager"] = !menuState["groupmanager"];
-                      setMenuState({ ...menuState, ...st });
-                    }}
-                  >
-                    <div className="siderbarelement">
-                      <span className="sidebar-normal">
-                      <span className="twolinestext">Group Manager</span>
-                        <b className="caret" />
-                      </span>
-                    </div>
-                  </a>
-                  <Collapse isOpen={menuState["groupmanager"]}>
-                    <ul className="nav">
-                      <li className={
-                        pathName === "campaign-group"
-
-                          ? "active" : null}>
-                        <NavLink
-                          to={"/campaign-group"}
-                          activeClassName=""
-                        >
-                          <div className="siderbarelement">
-                            <span className="sidebar-normal">
-                            <span className="twolinestext">Campaign Grouping</span>
-                            </span>
-                          </div>
-                        </NavLink>
-                      </li>
-                      <li className={
-                        pathName === "product-group"
-
-                          ? "active" : null}>
-                        <NavLink
-                          to={"/product-group"}
-                          activeClassName=""
-                        >
-                          <div className="siderbarelement">
-                            <span className="sidebar-normal">
-                            <span className="twolinestext">Product Grouping</span>
-                            </span>
-                          </div>
-                        </NavLink>
-                      </li>
-                    </ul>
-                  </Collapse>
-                </li>
-
-                {/* group manager */}
-
-                {/* Client manager */}
-                <li className={
-                  pathName === "client-manager"
-                    ? "active" : null}>
-                  <NavLink
-                    to={"/client-manager"}
-                    activeClassName=""
-                  >
-                    <div className="siderbarelement">
-                      <span className="sidebar-normal">
-                      <span className="twolinestext">Client Manager</span>
-                      </span>
-                    </div>
-                  </NavLink>
-                </li>
-
-                {/* Client manager */}
-
-              </ul>
-            </Collapse>
-          </li>
-
-          {/* control room */}
-
-          {/* profitbridge */}
-
-          <li className={
-            pathName === "ars"
-
-              ? "active" : null}>
-            <a
-              href="#pablo"
-              data-toggle="collapse"
-              aria-expanded={menuState["profitbridge"]}
-              onClick={(e) => {
-                e.preventDefault();
-                let st = {};
-                st["profitbridge"] = !menuState["profitbridge"];
-                setMenuState({ ...menuState, ...st });
-              }}
-            >
-              <div className="siderbarelement">
-                <i className="tim-icons icon-components" />
-                <p>
-                <span className="twolinestext">Profit Bridge</span>
-                  <b className="caret caret2" />
-                </p>
-              </div>
-            </a>
-            <Collapse isOpen={menuState["profitbridge"]}>
-              <ul className="nav">
-                {/* Client manager */}
-                <li className={
-                  pathName === "ars"
-                    ? "active" : null}>
-                  <NavLink
-                    to={"/ars"}
-                    activeClassName=""
-                  >
-                    <div className="siderbarelement">
-                      <span className="sidebar-normal">
-                      <span className="twolinestext">Audience Receptivity Score</span>
-                      </span>
-                    </div>
-                  </NavLink>
-                </li>
-
-                {/* Client manager */}
-
-              </ul>
-            </Collapse>
-          </li>
-
-          {/* profit bridge */}
-
-          {/* reports */}
-          <li className={
-            pathName === "reports"
-
-              ? "active" : null}>
-            <NavLink
-              to={"/reports"}
-              activeClassName=""
-            >
-              <>
-                <i className="tim-icons icon-notes" />
-                <p><span className="twolinestext">Reports</span></p>
-              </>
-            </NavLink>
-          </li>
-          {/* reports */}
-
-          {/* settings */}
-          <li className={
-            pathName === "settings"
-
-              ? "active" : null}>
-            <NavLink
-              to={"/settings"}
-              activeClassName=""
-            >
-              <>
-                <i className="tim-icons icon-settings" />
-                <p><span className="twolinestext">Settings</span></p>
-              </>
-            </NavLink>
-          </li>
-          {/* settings */}
+          {navCreate(navList)}
 
           {/* logout */}
           <li>
